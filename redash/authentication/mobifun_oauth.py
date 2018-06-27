@@ -7,9 +7,9 @@ from redash import models, settings
 from redash.authentication import create_and_login_user, logout_and_redirect_to_index
 from redash.authentication.org_resolving import current_org
 
-logger = logging.getLogger('mobifun_auth')
+logger = logging.getLogger('mobifun_oauth')
 
-blueprint = Blueprint('mobifun_auth', __name__)
+blueprint = Blueprint('mobifun_oauth', __name__)
 
 
 def fetch_remote_token():
@@ -17,9 +17,9 @@ def fetch_remote_token():
 
 
 def register_remote_app():
-    oauth.register('redash',
-                     client_id=settings.REDASH_CLIENT_ID,
-                     client_secret=settings.REDASH_CLIENT_SECRET,
+    oauth.register('mobifun',
+                     client_id=settings.MOBIFUN_CLIENT_ID,
+                     client_secret=settings.MOBIFUN_CLIENT_SECRET,
                      access_token_url='https://portal.mobifun365.com/oauth-2/token',
                      access_token_params=None,
                      refresh_token_url=None,
@@ -28,22 +28,22 @@ def register_remote_app():
                      client_kwargs={'scope': 'profile'},
                      fetch_token=fetch_remote_token,
     )
-    return oauth.redash
+    return oauth.mobifun
 
 
-@blueprint.route('/<org_slug>/oauth/redash', endpoint="authorize_org")
+@blueprint.route('/<org_slug>/oauth/mobifun', endpoint="authorize_org")
 def org_login(org_slug):
     session['org_slug'] = current_org.slug
     return redirect(url_for(".authorize", next=request.args.get('next', None)))
 
 
-@blueprint.route('/oauth/redash', endpoint="authorize")
+@blueprint.route('/oauth/mobifun', endpoint="authorize")
 def login():
     redirect_uri = url_for('.callback', _external=True)
     return register_remote_app().authorize_redirect(redirect_uri)
 
 
-@blueprint.route('/oauth/redash_callback', endpoint="callback")
+@blueprint.route('/oauth/mobifun_callback', endpoint="callback")
 def authorized():
     access_token = register_remote_app().authorize_access_token()
 

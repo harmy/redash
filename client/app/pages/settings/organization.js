@@ -25,9 +25,10 @@ function OrganizationSettingsCtrl($http, toastr, clientConfig, Events) {
 
   this.dateFormatList = clientConfig.dateFormatList;
   this.googleLoginEnabled = clientConfig.googleLoginEnabled;
+  this.mobifunLoginEnabled = clientConfig.mobifunLoginEnabled;
 
   this.disablePasswordLoginToggle = () =>
-    (clientConfig.googleLoginEnabled || this.settings.auth_saml_enabled || this.settings.auth_mobifun_enabled) === false;
+    (clientConfig.googleLoginEnabled || this.settings.auth_saml_enabled || clientConfig.mobifunLoginEnabled) === false;
 }
 
 export default function init(ngModule) {

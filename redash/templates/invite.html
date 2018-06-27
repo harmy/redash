@@ -29,7 +29,7 @@
     {% endif %}
 
     {% if show_mobifun_account %}
-      <a href="/oauth/redash" class="login-button btn btn-default btn-block">
+      <a href="{{ url_for('mobifun_oauth.authorize') }}" class="login-button btn btn-default btn-block">
         <img src="/static/images/mobifun_logo.png">
         Login with Mobifun Account
       </a>

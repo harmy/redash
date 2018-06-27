@@ -158,7 +158,7 @@ def logout_and_redirect_to_index():
 
 
 def setup_authentication(app):
-    from redash.authentication import google_oauth, saml_auth, remote_user_auth, ldap_auth, mobifun_auth
+    from redash.authentication import google_oauth, saml_auth, remote_user_auth, ldap_auth, mobifun_oauth
 
     login_manager.init_app(app)
     oauth.init_app(app)
@@ -169,7 +169,7 @@ def setup_authentication(app):
     app.register_blueprint(saml_auth.blueprint)
     app.register_blueprint(remote_user_auth.blueprint)
     app.register_blueprint(ldap_auth.blueprint)
-    app.register_blueprint(mobifun_auth.blueprint)
+    app.register_blueprint(mobifun_oauth.blueprint)
 
     user_logged_in.connect(log_user_logged_in)
 
