@@ -4,7 +4,7 @@ import hashlib
 import hmac
 import time
 import logging
-
+from authlib.flask.client import OAuth
 from flask import redirect, request, jsonify, url_for
 
 from redash import models, settings
@@ -12,6 +12,8 @@ from redash.authentication.org_resolving import current_org
 from redash.tasks import record_event
 
 login_manager = LoginManager()
+oauth = OAuth()
+
 logger = logging.getLogger('authentication')
 
 
@@ -156,9 +158,10 @@ def logout_and_redirect_to_index():
 
 
 def setup_authentication(app):
-    from redash.authentication import google_oauth, saml_auth, remote_user_auth, ldap_auth
+    from redash.authentication import google_oauth, saml_auth, remote_user_auth, ldap_auth, mobifun_auth
 
     login_manager.init_app(app)
+    oauth.init_app(app)
     login_manager.anonymous_user = models.AnonymousUser
 
     app.secret_key = settings.COOKIE_SECRET
@@ -166,6 +169,7 @@ def setup_authentication(app):
     app.register_blueprint(saml_auth.blueprint)
     app.register_blueprint(remote_user_auth.blueprint)
     app.register_blueprint(ldap_auth.blueprint)
+    app.register_blueprint(mobifun_auth.blueprint)
 
     user_logged_in.connect(log_user_logged_in)
 
