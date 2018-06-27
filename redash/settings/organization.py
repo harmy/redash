@@ -2,9 +2,9 @@ import os
 from .helpers import parse_boolean
 
 if os.environ.get("REDASH_SAML_LOCAL_METADATA_PATH") is not None:
-    print "DEPRECATION NOTICE:\n"
-    print "SAML_LOCAL_METADATA_PATH is no longer supported. Only URL metadata is supported now, please update"
-    print "your configuration and reload."
+    print("DEPRECATION NOTICE:\n")
+    print("SAML_LOCAL_METADATA_PATH is no longer supported. Only URL metadata is supported now, please update")
+    print("your configuration and reload.")
     raise SystemExit(1)
 
 
