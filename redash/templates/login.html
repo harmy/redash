@@ -20,10 +20,12 @@
       </a>
     {% endif %}
 
+    {% if show_mobifun_account %}
       <a href="/oauth/redash" class="login-button btn btn-default btn-block">
         <img src="/static/images/mobifun_logo.png">
         Login with Mobifun Account
       </a>
+    {% endif %}
 
     {% if show_saml_login %}
       <a href="{{ url_for('saml_auth.sp_initiated', org_slug=org_slug, next=next) }}" class="login-button btn btn-default btn-block">SAML Login</a>

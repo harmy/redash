@@ -27,7 +27,7 @@ function OrganizationSettingsCtrl($http, toastr, clientConfig, Events) {
   this.googleLoginEnabled = clientConfig.googleLoginEnabled;
 
   this.disablePasswordLoginToggle = () =>
-    (clientConfig.googleLoginEnabled || this.settings.auth_saml_enabled) === false;
+    (clientConfig.googleLoginEnabled || this.settings.auth_saml_enabled || this.settings.auth_mobifun_enabled) === false;
 }
 
 export default function init(ngModule) {

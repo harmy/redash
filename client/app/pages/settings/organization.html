@@ -27,6 +27,21 @@
                 </div>
             </p>
 
+            <p>
+                <label>
+                    <input name="input" type="checkbox" ng-model="$ctrl.settings.auth_mobifun_enabled" ng-change="$ctrl.update('auth_mobifun_enabled')"
+                        accesskey="tab" ng-disabled="$ctrl.disablePasswordLoginToggle()"> Mobifun Account Login Enabled
+                    <span uib-popover="Password login can be disabled only if another login method is enabled." popover-trigger="'mouseenter'"
+                        ng-if="$ctrl.disablePasswordLoginToggle()">
+                        <i class="fa fa-question-circle"></i>
+                    </span>
+                </label>
+
+                <div class="callout callout-warning" ng-if="!$ctrl.settings.auth_mobifun_enabled">
+                    Mobifun account based login is currently disabled and users will be able to login only with the enabled.
+                </div>
+            </p>
+
             <div ng-if="$ctrl.googleLoginEnabled">
                 <h4>Google Login</h4>
                 <label>
