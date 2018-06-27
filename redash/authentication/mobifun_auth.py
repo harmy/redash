@@ -18,8 +18,8 @@ def fetch_remote_token():
 
 def register_remote_app():
     oauth.register('redash',
-                     client_id='WAm_WlYsp-YlN6_3gxWWG2WY-FWLHrm1',
-                     client_secret='qDItuJDJxiXEJU-kKDJDo03rjb7QKQtX',
+                     client_id=settings.REDASH_CLIENT_ID,
+                     client_secret=settings.REDASH_CLIENT_SECRET,
                      access_token_url='https://portal.mobifun365.com/oauth-2/token',
                      access_token_params=None,
                      refresh_token_url=None,
