@@ -83,8 +83,9 @@ def get_latest_release_from_ci():
     tarball_asset = filter(lambda asset: asset['url'].endswith('.tar.gz'), response.json())[0]
     filename = urllib.unquote(tarball_asset['pretty_path'].split('/')[-1])
     version = filename.replace('redash.', '').replace('.tar.gz', '')
-
-    release = Release(version, tarball_asset['url']+'?circle-token=0d516e8e705fe3918008781b7596b4b7d8c243aa', filename, '')
+    tarball_asset['url'] += '?circle-token=0d516e8e705fe3918008781b7596b4b7d8c243aa'
+    
+    release = Release(version, tarball_asset['url'], filename, '')
 
     return release
 
