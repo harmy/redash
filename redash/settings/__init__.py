@@ -52,6 +52,10 @@ GOOGLE_CLIENT_ID = os.environ.get("REDASH_GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.environ.get("REDASH_GOOGLE_CLIENT_SECRET", "")
 GOOGLE_OAUTH_ENABLED = GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET
 
+MOBIFUN_CLIENT_ID = os.environ.get("REDASH_MOBIFUN_CLIENT_ID", "")
+MOBIFUN_CLIENT_SECRET = os.environ.get("REDASH_MOBIFUN_CLIENT_SECRET", "")
+MOBIFUN_OAUTH_ENABLED = MOBIFUN_CLIENT_ID and MOBIFUN_CLIENT_SECRET
+
 # Enables the use of an externally-provided and trusted remote user via an HTTP
 # header.  The "user" must be an email address.
 #
