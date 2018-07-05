@@ -1,0 +1,14 @@
+pipeline:
+  backend:
+    image: python:2.7
+    commands:
+      - pip install --upgrade setuptools
+      - pip install -r requirements_dev.txt
+      - pip install -r requirements.txt
+      - pytest tests/
+
+  frontend:
+    image: node:6
+    commands:
+      - npm install
+      - npm run build
