@@ -1,14 +1,26 @@
+services:
+  database:
+    image: postgres
+  cache:
+    image: redis
+
 pipeline:
   backend:
+    group: build
     image: python:2
     commands:
       - pip install --upgrade setuptools
       - pip install -r requirements_dev.txt
       - pip install -r requirements.txt
-      - pytest tests/
+      - pytest
 
   frontend:
+    group: build
     image: node:6
     commands:
       - npm install
       - npm run build
+
+  # publish:
+  #   image: plugins/docker
+  #   repo: harmy/redash
